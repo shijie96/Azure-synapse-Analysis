@@ -209,7 +209,7 @@
 				"          ProductNumber,",
 				"          Color,",
 				"          ProductCategoryID = ProductStream@ProductCategoryID,",
-				"          ProductCategoryN = ProductStream@Name",
+				"          ProductCategoryName = ProductCategoryStream@Name",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectDimproduct",
