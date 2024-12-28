@@ -65,6 +65,9 @@
 				},
 				{
 					"name": "select1"
+				},
+				{
+					"name": "ProductJoinProductCategroy"
 				}
 			],
 			"scriptLines": [
@@ -155,7 +158,14 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> ProductStream",
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          ProductCategoryID as integer,",
+				"          ParentProductCategoryID as integer,",
+				"          Name as string,",
+				"          rowguid as string,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> ProductCategoryStream",
@@ -186,6 +196,11 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
+				"ProductStream, ProductCategoryStream join(ProductID == ERROR_FUNCTION(''),",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> ProductJoinProductCategroy",
 				"SelectColumns sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
