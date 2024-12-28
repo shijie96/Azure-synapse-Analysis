@@ -24,6 +24,9 @@
 						"type": "DatasetReference"
 					},
 					"name": "CustomerStream"
+				},
+				{
+					"name": "ProductStream"
 				}
 			],
 			"sinks": [
@@ -118,6 +121,8 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> CustomerStream",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> ProductStream",
 				"SaleOrderHeaderStream, SalesOderDetail join(SaleOrderHeaderStream@SalesOrderID == SalesOderDetail@SalesOrderID,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
