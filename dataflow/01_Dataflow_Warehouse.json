@@ -71,6 +71,9 @@
 				},
 				{
 					"name": "SelectDimproduct"
+				},
+				{
+					"name": "FilterNullColorRows"
 				}
 			],
 			"scriptLines": [
@@ -213,6 +216,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectDimproduct",
+				"SelectDimproduct filter(ERROR_FUNCTION('')) ~> FilterNullColorRows",
 				"SelectColumns sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
