@@ -216,7 +216,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectDimproduct",
-				"SelectDimproduct filter(ERROR_FUNCTION('')) ~> FilterNullColorRows",
+				"SelectDimproduct filter(!(isNull(Color))) ~> FilterNullColorRows",
 				"SelectColumns sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
