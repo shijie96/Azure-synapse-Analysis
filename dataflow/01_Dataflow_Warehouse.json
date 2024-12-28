@@ -54,6 +54,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "SynapseDimCustomer"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSynapseAnalyticsTable_DimProductStream",
+						"type": "DatasetReference"
+					},
+					"name": "DimProductStream"
 				}
 			],
 			"transformations": [
@@ -265,7 +272,26 @@
 				"     mapColumn(",
 				"          CustomerID,",
 				"          CompanyName",
-				"     )) ~> SynapseDimCustomer"
+				"     )) ~> SynapseDimCustomer",
+				"FilterNullColorRows sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          ProductID as integer,",
+				"          ProductNumber as string,",
+				"          Color as string,",
+				"          ProductCategoryID as integer,",
+				"          ProductCategoryName as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> DimProductStream"
 			]
 		}
 	}
