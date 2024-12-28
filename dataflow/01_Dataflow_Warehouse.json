@@ -26,6 +26,10 @@
 					"name": "CustomerStream"
 				},
 				{
+					"dataset": {
+						"referenceName": "appdbserver96_product",
+						"type": "DatasetReference"
+					},
 					"name": "ProductStream"
 				}
 			],
@@ -121,8 +125,29 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> CustomerStream",
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> ProductStream",
+				"source(output(",
+				"          ProductID as integer,",
+				"          Name as string,",
+				"          ProductNumber as string,",
+				"          Color as string,",
+				"          StandardCost as decimal(19,4),",
+				"          ListPrice as decimal(19,4),",
+				"          Size as string,",
+				"          Weight as decimal(8,2),",
+				"          ProductCategoryID as integer,",
+				"          ProductModelID as integer,",
+				"          SellStartDate as timestamp,",
+				"          SellEndDate as timestamp,",
+				"          DiscontinuedDate as timestamp,",
+				"          ThumbNailPhoto as binary,",
+				"          ThumbnailPhotoFileName as string,",
+				"          rowguid as string,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> ProductStream",
 				"SaleOrderHeaderStream, SalesOderDetail join(SaleOrderHeaderStream@SalesOrderID == SalesOderDetail@SalesOrderID,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
