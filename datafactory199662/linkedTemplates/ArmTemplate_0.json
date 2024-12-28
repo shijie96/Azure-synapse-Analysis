@@ -949,7 +949,14 @@
 					{
 						"name": "01-dataflow-datawarehouse",
 						"type": "ExecuteDataFlow",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "StoredProcedureClearTables",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
@@ -987,6 +994,26 @@
 							},
 							"traceLevel": "Fine"
 						}
+					},
+					{
+						"name": "StoredProcedureClearTables",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[DeleteTable]"
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureSynapseAnalytics1",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
 				"policy": {
@@ -997,7 +1024,8 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/01_Dataflow_Warehouse')]",
-				"[concat(variables('factoryId'), '/linkedServices/datalakelinkage')]"
+				"[concat(variables('factoryId'), '/linkedServices/datalakelinkage')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureSynapseAnalytics1')]"
 			]
 		}
 	]
