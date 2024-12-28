@@ -291,7 +291,14 @@
 				"     allowCopyCommand: true,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> DimProductStream"
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          ProductID,",
+				"          ProductNumber,",
+				"          Color,",
+				"          ProductCategoryID,",
+				"          ProductCategoryName",
+				"     )) ~> DimProductStream"
 			]
 		}
 	}
