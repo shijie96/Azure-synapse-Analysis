@@ -18,7 +18,8 @@
 					"storedProcedureName": "[dbo].[GetCompanyName]",
 					"storedProcedureParameters": {
 						"pCustomerID": {
-							"value": ""
+							"value": "277",
+							"type": "Int32"
 						}
 					}
 				},
