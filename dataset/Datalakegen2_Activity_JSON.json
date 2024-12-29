@@ -1,0 +1,18 @@
+{
+	"name": "Datalakegen2_Activity_JSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "datalakelinkage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "json"
+			}
+		},
+		"schema": {}
+	}
+}

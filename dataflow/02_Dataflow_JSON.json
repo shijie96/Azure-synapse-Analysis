@@ -14,6 +14,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "Datalakegen2_Activity_JSON",
+						"type": "DatasetReference"
+					},
 					"name": "ActivitylogJSONstream"
 				}
 			],
@@ -25,7 +29,7 @@
 				"          Status as string,",
 				"          Eventcategory as string,",
 				"          Level as string,",
-				"          Time as string,",
+				"          Time as timestamp,",
 				"          Subscription as string,",
 				"          Eventinitiatedby as string,",
 				"          Resourcetype as string,",
@@ -37,6 +41,9 @@
 				"     ignoreNoFilesFound: false) ~> source1",
 				"source1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> ActivitylogJSONstream"
 			]
