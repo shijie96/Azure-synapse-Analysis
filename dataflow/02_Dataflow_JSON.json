@@ -41,6 +41,7 @@
 				"     ignoreNoFilesFound: false) ~> source1",
 				"source1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     partitionFileNames:['Activity_JSON'],",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
