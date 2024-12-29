@@ -30,8 +30,26 @@
 					"dataset": {
 						"referenceName": "AzureSynapseAnalyticDB",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "SetCompanyName",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Lookup_GetCompanyName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": []
 			}
 		],
 		"annotations": []
