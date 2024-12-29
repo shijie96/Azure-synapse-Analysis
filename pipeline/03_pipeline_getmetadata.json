@@ -79,7 +79,13 @@
 							"inputs": [
 								{
 									"referenceName": "CopyEachItem",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"filename": {
+											"value": "@item().Name",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
