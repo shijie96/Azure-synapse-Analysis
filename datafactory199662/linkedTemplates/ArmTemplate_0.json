@@ -854,7 +854,7 @@
 						"typeProperties": {
 							"variableName": "CompanyName",
 							"value": {
-								"value": "@activity('Lookup_GetCompanyName').output.value['CompanyName']",
+								"value": "@activity('Lookup_GetCompanyName').output.value",
 								"type": "Expression"
 							}
 						}
