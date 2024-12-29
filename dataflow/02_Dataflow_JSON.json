@@ -14,7 +14,7 @@
 			],
 			"sinks": [
 				{
-					"name": "sink1"
+					"name": "ActivitylogJSONstream"
 				}
 			],
 			"transformations": [],
@@ -38,7 +38,7 @@
 				"source1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true) ~> ActivitylogJSONstream"
 			]
 		}
 	}
