@@ -185,8 +185,8 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "01_Activity_getCompanyName",
-						"type": "SqlServerStoredProcedure",
+						"name": "Lookup_GetCompanyName",
+						"type": "Lookup",
 						"dependsOn": [],
 						"policy": {
 							"timeout": "0.12:00:00",
@@ -197,17 +197,23 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"storedProcedureName": "[[dbo].[GetCompanyName]",
-							"storedProcedureParameters": {
-								"pCustomerID": {
-									"value": "277",
-									"type": "Int32"
-								}
+							"source": {
+								"type": "SqlDWSource",
+								"sqlReaderStoredProcedureName": "[[dbo].[GetCompanyName]",
+								"storedProcedureParameters": {
+									"pCustomerID": {
+										"type": "Int32",
+										"value": "277"
+									}
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "AzureSynapseAnalyticDB",
+								"type": "DatasetReference",
+								"parameters": {}
 							}
-						},
-						"linkedServiceName": {
-							"referenceName": "AzureSynapseAnalytics1",
-							"type": "LinkedServiceReference"
 						}
 					}
 				],
@@ -217,7 +223,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSynapseAnalytics1')]"
+				"[concat(variables('factoryId'), '/datasets/AzureSynapseAnalyticDB')]"
 			]
 		},
 		{
