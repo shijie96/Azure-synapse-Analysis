@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "01_Activity_getCompanyName",
-				"type": "SqlServerStoredProcedure",
+				"name": "Lookup_GetCompanyName",
+				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -15,17 +15,15 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[GetCompanyName]",
-					"storedProcedureParameters": {
-						"pCustomerID": {
-							"value": "277",
-							"type": "Int32"
-						}
+					"source": {
+						"type": "SqlDWSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "AzureSynapseAnalyticDB",
+						"type": "DatasetReference"
 					}
-				},
-				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics1",
-					"type": "LinkedServiceReference"
 				}
 			}
 		],
