@@ -53,9 +53,39 @@
 				"typeProperties": {
 					"variableName": "CompanyName",
 					"value": {
-						"value": "@activity('Lookup_GetCompanyName').output.firstRow",
+						"value": "@activity('Lookup_GetCompanyName').output.firstRow.CompanyName",
 						"type": "Expression"
 					}
+				}
+			},
+			{
+				"name": "SetDefaultCompanyName",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Lookup_GetCompanyName",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "CompanyName",
+							"value": {
+								"type": "String",
+								"content": "Default"
+							}
+						}
+					],
+					"setSystemVariable": true
 				}
 			}
 		],
