@@ -13,7 +13,19 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[GetCompanyName]",
+					"storedProcedureParameters": {
+						"pCustomerID": {
+							"value": ""
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics1",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
